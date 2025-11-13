@@ -1,5 +1,5 @@
- #include <stdio.h>
- #include <string.h>
+#include <stdio.h>
+#include <string.h>
  
 // Define structure for Room
 struct Room {
@@ -8,9 +8,9 @@ struct Room {
     int capacity;
     float rate;
     char status[50]; // "Available" or "Occupied"
-    char guest_name[50];
+    char guest_name[20];
 };
-                                                                                                                                         
+		                                                                                                                                 
 // Function to display main menu
 void displayMenu() {
     //printf("\t\t\n====================================\n");
@@ -25,7 +25,7 @@ void displayMenu() {
 // Function to display room details
 void displayRoomDetails(struct Room rooms[], int totalRooms) {
     printf("\nRoom Details:\n");
-    printf("==================================================================\n");
+    printf("===================================================================\n");
     printf("Room Type\t\tQuantity\tCapacity\tRate\n");
 
     char current_type[50];
@@ -40,8 +40,8 @@ void displayRoomDetails(struct Room rooms[], int totalRooms) {
     //3. start_room: starting room number for the current type
     //4. i: outer loop index (iterates through all rooms)
     //5. j: inner loop index (iterates through rooms of the same type)
-        for (int j = i; j < totalRooms; j++) {                             
-            if (strcmp(rooms[j].room_type, current_type) == 0) {
+for (int j = i; j < totalRooms; j++) {                             
+if (strcmp(rooms[j].room_type, current_type) == 0) {
                 count++;
                 i++;             
             } else { 
@@ -180,23 +180,25 @@ int main() {
             // initializing rooms status 
     }
 
-int choice;
+char choice;
     while (1) {                              // used switch statement to handle the choice of the user 
         displayMenu();                       // calls display menu function to display main menu 
+        printf("\n");
         printf("Enter Your Choice: ");
-        scanf("%d", &choice);
+      //fflush(stdin);
+        scanf(" %c",&choice);
 
         switch (choice) {
-            case 1:
+            case '1':
             displayRoomDetails(rooms, TOTAL_ROOMS);      // calls display room details function in case 1 of main menu 
                 break;
-            case 2:
+            case '2':
             bookRoom(rooms, TOTAL_ROOMS);                // calls room booking function in case 2 of main menu 
                 break;
-            case 3:
+            case '3':
             checkOut(rooms, TOTAL_ROOMS);                // calls check out function in case 3 of main menu 
                 break;
-            case 4:
+            case '4':
                 printf("\n====================================\n");    
                 printf("   THANKS FOR VISITING OUR HOTEL.\n");
                 printf("====================================\n");
