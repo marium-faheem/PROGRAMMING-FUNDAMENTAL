@@ -58,7 +58,6 @@ void multiplyMatrix(int a[10][10], int b[10][10], int c[10][10], int r1, int c1,
         }
     }
     // Matrix multiplication logic
-    int i;
     for (i = 0; i < r1; i++) {
     	int j;
         for (j = 0; j < c2; j++) {
