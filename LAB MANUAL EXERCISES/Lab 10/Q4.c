@@ -1,81 +1,29 @@
 #include <stdio.h>
-// Function declarations
-int inputDimensions(int *r1, int *c1, int *r2, int *c2);
-void inputMatrix(int matrix[10][10], int rows, int cols, char name);
-void multiplyMatrix(int a[10][10], int b[10][10], int c[10][10], int r1, int c1, int r2, int c2);
-void printMatrix(int matrix[10][10], int rows, int cols);
+
+float roundTwoDecimal(float num) {
+    int temp = num * 1000;   // move 3 decimals
+
+    // Check 3rd decimal digit
+    if (temp % 10 >= 5)
+        temp = temp / 10 + 1;   // round up
+    else
+        temp = temp / 10;       // round down
+
+    return temp / 100.0;        // convert to 2 decimals
+}
+
+void getInput() {
+    float n;
+    printf("Enter a positive number with fractional part: ");
+    scanf("%f", &n);
+
+    float ans = roundTwoDecimal(n);
+    printf("Rounded value: %.2f\n", ans);
+}
 
 int main() {
-    int r1, c1, r2, c2;
-    // Step 1: Input dimensions and check multiplication possibility
-    if (!inputDimensions(&r1, &c1, &r2, &c2)) {
-        printf("Matrix multiplication is not possible.\n");
-        return 0;
-    }
 
-    // Step 2: Input matrices
-    int a[10][10], b[10][10], c[10][10];
-    inputMatrix(a, r1, c1, 'A');
-    inputMatrix(b, r2, c2, 'B');
-
-    // Step 3: Multiply matrices
-    multiplyMatrix(a, b, c, r1, c1, r2, c2);
-
-    // Step 4: Print result
-    printMatrix(c, r1, c2);
+    getInput();   // call function
 
     return 0;
-}
-// Function to input matrix dimensions and check compatibility
-int inputDimensions(int *r1, int *c1, int *r2, int *c2) {
-    printf("Enter rows and columns for Matrix A: ");
-    scanf("%d %d", r1, c1);
-    printf("Enter rows and columns for Matrix B: ");
-    scanf("%d %d", r2, c2);
-
-    if (*c1 != *r2)
-        return 0; // multiplication not possible
-    return 1; // possible
-}
-int i,j;
-// Function to input elements into a matrix
-void inputMatrix(int matrix[10][10], int rows, int cols, char name) {
-    printf("\nEnter elements of Matrix %c (%dx%d):\n", name, rows, cols);
-    for(i = 0; i < rows; i++) {
-        for ( j = 0; j < cols; j++) {
-            printf("%c[%d][%d] = ", name, i + 1, j + 1);
-            scanf("%d", &matrix[i][j]);
-        }
-    }
-}
-// Function to multiply two matrices
-void multiplyMatrix(int a[10][10], int b[10][10], int c[10][10], int r1, int c1, int r2, int c2) {
-    // Initialize result matrix to 0
-    int i,j;
-    for (i = 0; i < r1; i++) {
-        for ( j = 0; j < c2; j++) {
-            c[i][j] = 0;
-        }
-    }
-    // Matrix multiplication logic
-    for (i = 0; i < r1; i++) {
-    	int j;
-        for (j = 0; j < c2; j++) {
-        	int k;
-            for (k = 0; k < c1; k++) {
-                c[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
-}
-// Function to print a matrix
-void printMatrix(int matrix[10][10], int rows, int cols) {
-    printf("\nResultant Matrix (A x B):\n");
-    int i,j;
-    for (i = 0; i < rows; i++) {
-        for (j = 0; j < cols; j++) {
-            printf("%5d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
 }

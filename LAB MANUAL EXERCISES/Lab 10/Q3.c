@@ -1,25 +1,27 @@
 #include <stdio.h>
-void takeinput(int *a, int *b);
-void sum();
 
-int main()
-{
-sum();
-return 0;
+float volumeCal(int h, int a) {
+    return (a * a * h) / 3.0;
 }
 
-void takeinput(int *a, int *b)
-{
-printf("Enter first number: ");
-scanf("%d", a);
-printf("Enter second number: ");
-scanf("%d", b);
+void getData(int h, int a) {
+    float V;
+
+    printf("Enter height: ");
+    scanf("%d", &h);
+
+    printf("Enter base: ");
+    scanf("%d", &a);
+
+    V = volumeCal(h, a);   // calling from inside getData()
+
+    printf("Volume = %.2f\n", V);
 }
 
-void sum()
-{
-int a, b;
-takeinput(&a, &b);
-int result = a + b;
-printf("The sum of %d and %d is %d\n", a, b, result);
+int main() {
+    int h, a;
+
+    getData(h, a);   // calling the first function
+
+    return 0;
 }

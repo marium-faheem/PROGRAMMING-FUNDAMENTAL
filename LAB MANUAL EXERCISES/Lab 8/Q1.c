@@ -7,6 +7,7 @@ int main(){
 	scanf("%s", firstname);
 	printf("Enter last name:");
 	scanf("%s", lastname);
+	strcat(firstname," ");
 	strcat(firstname,lastname);
 	printf("Full name: %s",firstname);
 	printf("\n");
